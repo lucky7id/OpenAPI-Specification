@@ -1,0 +1,87 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Hootr",
+    "description": "A simple messaging service to tell the world everything you have to say, 140 characters at a time",
+    "termsOfService": "http://swagger.io/terms/",
+    "contact": {
+      "name": "The team",
+      "email": "foo@example.com",
+      "url": "https://hootr.co/home"
+    },
+    "license": {
+      "name": "MIT",
+      "url": "http://github.com/gruntjs/grunt/blob/master/LICENSE-MIT"
+    }
+  },
+  "host": "hootr.co",
+  "basePath": "",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "NewHoot": {
+      "type": "string"
+    },
+    "Hoot": {
+      "type": "string"
+    }
+  },
+  "paths": {
+    "/api/hoot": {
+      "post": {
+        "description": "Tells the world your message, in the form of a hoot",
+        "parameters": [
+          {
+            "name": "post",
+            "in": "body",
+            "description": "The message body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/NewHoot"
+            }
+          },
+          {
+            "name": "replyto",
+            "in": "body",
+            "description": "referrence to hoot id being replied to",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Your hoot posted successfully",
+            "schema": {
+              "$ref": "#/definitions/Hoot"
+            }
+          }
+        }
+      }
+    },
+    "/api/timeline": {
+      "get": {
+        "description": "Get all hoots, ever",
+        "responses": {
+          "200": {
+            "description": "A collection of all hoots",
+            "type": "array",
+            "items": {
+              "post": {
+                "required": true,
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
