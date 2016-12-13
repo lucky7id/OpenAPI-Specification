@@ -72,11 +72,13 @@
         "responses": {
           "200": {
             "description": "A collection of all hoots",
-            "type": "array",
-            "items": {
-              "post": {
-                "required": true,
-                "type": "string"
+            "schema": {
+              "type": "array",
+              "items": {
+                "post": {
+                  "required": true,
+                  "type": "string"
+                }
               }
             }
           }
